@@ -43,4 +43,4 @@ curl -s http://localhost:8080/api/salad?name=Dan
 curl -s --data "Marcelo" http://localhost:8080/api/salad
 ```
 
-You can either use Postman or even your web browser to the API.
+You can either use Postman or even your web browser to call the API.
