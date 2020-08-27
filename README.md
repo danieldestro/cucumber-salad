@@ -7,12 +7,18 @@ Simple implementation of a Spring Boot application that serves an API and automa
 * JDK 11
 * Apache Maven
 
-## Tests
+## Unit and Integration Tests
 
-To execute the tests, run:
+To execute all unit tests, run:
 
 ```
-mvnw clean test
+mvn clean test
+```
+
+To execute all tests (unit and integration), run:
+
+```
+mvn clean integration-test
 ```
 
 ## Runtime
@@ -20,5 +26,19 @@ mvnw clean test
 To execute the application, run:
 
 ```
-mvnw spring-boot:run
+mvn spring-boot:run
+```
+
+## Calling the API
+
+After you start up the application, you can call the REST API.
+
+On the command line, use "curl":
+
+```
+curl -s http://localhost:8080/api/salad
+
+curl -s http://localhost:8080/api/salad?name=Dan
+
+curl -s --data "Marcelo" http://localhost:8080/api/salad
 ```

@@ -11,7 +11,7 @@ import cucumber.salad.App;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = App.class)
-public class AppTest {
+public class AppIT {
 
 	@Test
 	public void contextLoads() {
