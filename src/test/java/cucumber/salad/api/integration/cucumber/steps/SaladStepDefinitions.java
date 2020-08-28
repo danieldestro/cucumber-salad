@@ -13,42 +13,48 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class SaladStepDefinitions extends CucumberSpringContextConfig {
-	
+
 	@Autowired
 	private DummyService service;
-	
+
 	@Autowired
 	private SaladInfo info;
 
-	@Given("there are no name configured")
+	@Given("there are no names configured")
 	public void deleteStorages() {
+		info.setName(null);
 		assertThat(info.getName()).isNull();
+		log.info("there are no names configured");
 	}
 
 	@When("I say hello to {string}")
 	public void hello(String name) {
 		String phrase = service.hello(name);
-		assertThat(phrase).isEqualTo("Hello, "+name);
+		assertThat(phrase).isEqualTo("Hello, " + name);
 		info.setName(name);
+		log.info("I say hello to " + name);
 	}
 
-	@When("My friend says whats up to him")
+	@When("my friend says whats up to him")
 	public void whatsup() {
 		String phrase = service.whatsup(info.getName());
-		assertThat(phrase).isEqualTo("What´s up, "+info.getName());
+		assertThat(phrase).isEqualTo("Whats up, " + info.getName());
+		log.info("my friend says whats up to " + info.getName());
 	}
 
-	@Then("Everyone goes home")
+	@Then("everyone goes home")
 	public void goHome() {
 		info.setName(null);
+		log.info("everyone goes home");
 	}
 
-	@Then("No one {yesOrNo} around")
+	@Then("no one {yesOrNo} around")
 	public void empty(boolean empty) {
-		if(empty) {
+		if (empty) {
 			assertThat(info.getName()).isNull();
 		} else {
 			assertThat(info.getName()).isNotNull();
 		}
+		log.info("no one " + empty + " around");
 	}
 }
