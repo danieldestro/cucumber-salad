@@ -2,7 +2,14 @@ package my.generics;
 
 public class ProcessStep implements Step<ProcessConf> {
 
-	public void setConfig(ProcessConf conf) {
+	private ProcessConf config;
+
+	public void setConfig(ProcessConf config) {
+		this.config = config;
 	}
-	// implementation
+
+	@Override
+	public ProcessConf getConfig() {
+		return config;
+	}
 }

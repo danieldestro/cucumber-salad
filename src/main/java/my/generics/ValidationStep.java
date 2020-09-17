@@ -1,8 +1,15 @@
 package my.generics;
 
 public class ValidationStep implements Step<ValidationConf> {
-	
-	public void setConfig(ValidationConf conf) {
+
+	private ValidationConf config;
+
+	public void setConfig(ValidationConf config) {
+		this.config = config;
 	}
-	// implementation
+
+	@Override
+	public ValidationConf getConfig() {
+		return config;
+	}
 }

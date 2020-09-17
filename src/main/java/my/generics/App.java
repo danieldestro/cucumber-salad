@@ -5,12 +5,18 @@ import java.util.List;
 
 public class App {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		List<Config> configs = loadConfigsFromRepository(); // contain all subtypes of Config
 		for (Config conf : configs) {
-			Step<? extends Config> step = conf.type().getDeclaredConstructor().newInstance();
 
-			step.setConfig(conf); // compiler complains
+			//Step<? extends Config> step = conf.type().getDeclaredConstructor().newInstance();
+			//step.setConfig(conf); // compiler complains
+
+			Step<? super Config> step = conf.type().getDeclaredConstructor().newInstance();
+			step.setConfig(conf); // works fine now
+
+			System.out.println(step);
+			System.out.println(step.getConfig());
 		}
 	}
 
